@@ -23,7 +23,7 @@ module.exports = {
     if (!args.length) {
       data.push("Here's a list of all the commands:");
       data.push(commands.map(command => `\t- \`${command.name}\``).join("\n"));
-      data.push(`To get more information about a command, use \`${prefix}help [command]\``);
+      data.push(`To get more information about a command, use \`${prefix} help [command]\``);
     } else {
       // Get command info
       const name = args[0].toLowerCase();
@@ -43,7 +43,7 @@ module.exports = {
       if (command.cooldown) {
         data.push(`**Cooldown:** ${command.cooldown}s`);
       }
-      data.push(`**Usage:** \`${prefix}${command.usage}\``);
+      data.push(`**Usage:** \`${prefix} ${command.usage}\``);
     }
     return message.channel.send(data.join("\n"), { split: true });
   }

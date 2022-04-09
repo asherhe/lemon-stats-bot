@@ -16,6 +16,7 @@ for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
   client.commands.set(command.name, command);
 }
+const defaultCommand = client.commands.get("user");
 
 // Notify when ready
 client.once("ready", () => {
@@ -24,9 +25,9 @@ client.once("ready", () => {
   client.user.setActivity("lemon", {type: "PLAYING"});
 });
 
-client.on("message", message => {
+client.on("messageCreate", message => {
   // Ignore messages that are not commands
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
 
   // Get command arguments and command
   const args = message.content.slice(prefix.length).trim().split(/ +/);
@@ -38,7 +39,7 @@ client.on("message", message => {
 
   // Default lemonstatistics on user
   if (!command) {
-    message.reply(message);
+    defaultCommand.execute(message, message.content.slice(prefix.length).trim().split(/ +/));
     return;
   }
 
