@@ -1,3 +1,8 @@
+# NodeJS modules, lots of files
 node_modules/
 
+# Token that nobody shoud know about
 /token.txt
+
+# Random logs that aren't actually that important until something goes catastrophically wrong
+log.txt
