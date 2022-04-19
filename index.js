@@ -1,10 +1,13 @@
-// Invite link: https://discord.com/api/oauth2/authorize?client_id=962179559053197342&permissions=2048&scope=bot%20applications.commands
+// Bot invite link: https://discord.com/api/oauth2/authorize?client_id=962179559053197342&permissions=2048&scope=bot%20applications.commands
 
 // Some imports
 const fs = require("fs");
 const Discord = require("discord.js");
-const { prefix, token } = require("./config.json");
+const { prefix } = require("./config.json");
 const log = require("./log");
+
+// Get token from file
+var token = fs.readFileSync("./token.txt", "utf8").replace(/\s/g, "");
 
 // Initialize some stuff
 const client = new Discord.Client({ intents: [Discord.Intents.FLAGS.GUILDS, Discord.Intents.FLAGS.GUILD_MESSAGES] });
@@ -107,5 +110,5 @@ client.on("messageCreate", async (message) => {
   await runCommand(command, message, args);
 });
 
-// Very important bit
+// Connect to the bot using the login token
 client.login(token);
