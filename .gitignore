@@ -5,4 +5,4 @@ node_modules/
 /token.txt
 
 # Random logs that aren't actually that important until something goes catastrophically wrong
-log.txt
+/log.txt
