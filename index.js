@@ -32,7 +32,9 @@ const defaultCommand = client.commands.get("leaderboard");
 async function runCommand(command, message, args) {
   if (!message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES")) return; // no permission to speak in this channel
 
-  log.info(`${message.author.tag}: issued ${message.content}: ${message.guild.name} #${message.channel.name}`);
+  log.info(
+    `${message.author.tag}: issued ${message.content}: ${message.guild.name} #${message.channel.name} (${message.guild.id}#${message.channel.id})`
+  );
 
   var id = command.universalCooldown ? message.channel.id : message.author.id;
   if (!cooldowns.has(command.name)) {

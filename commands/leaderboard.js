@@ -67,7 +67,11 @@ module.exports = {
       if (message.author.id !== message.guild.me.id) lastMessage = message;
     });
 
-    log.info(`Done searching channel ${message.guild.name} #${message.channel.name}`);
+    log.info(
+      `Done searching channel ${message.guild.name} #${message.channel.name}. ${lemonCount.client.users.cache.get(
+        lemonCount.firstKey()
+      )} has the most lemons at ${lemonCount.first()} lemons`
+    );
 
     var lemonBreakdown =
       "**Lemon Leaderboard**\n*(Note: Consecutive messages containing `lemon` are considered as one)*";
