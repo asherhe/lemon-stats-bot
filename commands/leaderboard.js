@@ -68,9 +68,9 @@ module.exports = {
     });
 
     log.info(
-      `Done searching channel ${message.guild.name} #${message.channel.name}. ${lemonCount.client.users.cache.get(
-        lemonCount.firstKey()
-      )} has the most lemons at ${lemonCount.first()} lemons`
+      `Done searching channel ${message.guild.name} #${message.channel.name}. ${
+        client.users.cache.get(lemonCount.firstKey()).username
+      } has the most lemons at ${lemonCount.first()} lemons`
     );
 
     var lemonBreakdown =

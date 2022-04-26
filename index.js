@@ -71,14 +71,13 @@ async function runCommand(command, message, args) {
 
   try {
     await command.execute(message, args, client);
-  } catch (error) {
+  } catch (/** @type Error */ error) {
     // There was some error running the command
     try {
       // this may not be possible because of permission stuff
-      message.reply("there was an error running that command.");
-      message.channel.send(`Error message:\n\`\`\`\n${error}\n\`\`\``);
+      message.reply(`Oh no! There was an error running that command:\n\`\`\`${error}\n${error.stack}\`\`\``);
     } catch (error) {}
-    log.error(error.toString());
+    error.log.error(`${error}\n${error.stack}`);
   }
   log.info(`Done running ${message.content} in ${message.guild.name} #${message.channel.name}`);
 }
