@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const pluralize = require("pluralize");
-const { prefix } = require('../config.json');
+const { prefix } = require("../config.json");
 
 module.exports = {
   name: "help",
@@ -23,12 +23,12 @@ module.exports = {
     // No argument
     if (!args.length) {
       data.push("Here's a list of all the commands:");
-      data.push(commands.map(command => `\t- \`${command.name}\``).join("\n"));
+      data.push(commands.map((command) => `\t- \`${command.name}\``).join("\n"));
       data.push(`To get more information about a command, use \`${prefix} help [command]\``);
     } else {
       // Get command info
       const name = args[0].toLowerCase();
-      const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
+      const command = commands.get(name) || commands.find((c) => c.aliases && c.aliases.includes(name));
 
       // No such command
       if (!command) {
@@ -38,7 +38,11 @@ module.exports = {
       // Add info about command
       data.push(`**Name:** \`${command.name}\``);
       if (command.aliases) {
-        data.push(`**${pluralize("Alias", command.aliases.length)}:** ${command.aliases.map(alias => `\`${alias}\``).join(", ")}`);
+        data.push(
+          `**${pluralize("Alias", command.aliases.length)}:** ${command.aliases
+            .map((alias) => `\`${alias}\``)
+            .join(", ")}`
+        );
       }
       data.push(`**Description:** ${command.description}`);
       if (command.cooldown) {
@@ -47,5 +51,5 @@ module.exports = {
       data.push(`**Usage:** \`${prefix} ${command.usage}\``);
     }
     return message.channel.send(data.join("\n"), { split: true });
-  }
-}
+  },
+};

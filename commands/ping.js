@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+const Discord = require("discord.js");
 module.exports = {
   name: "ping",
   description: "Pong!",
@@ -12,5 +12,5 @@ module.exports = {
    */
   execute(message, args, client) {
     message.reply(`Pong!`);
-  }
-}
+  },
+};
