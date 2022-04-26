@@ -75,9 +75,17 @@ async function runCommand(command, message, args) {
     // There was some error running the command
     try {
       // this may not be possible because of permission stuff
-      message.reply(`Oh no! There was an error running that command:\n\`\`\`${error}\n${error.stack}\`\`\``);
+      message.reply(
+        `Oh no! There was an error running that command:\n\`\`\`${error.stack
+          // Hide absolute path for privacy reasons
+          .replace(/\\/g, "/")
+          .replace(
+            /(?<=\().+(?=\/lemon-stats)/g,
+            ""
+          )}\`\`\`\nPlease consider submitting a bug at <https://github.com/asherhe/lemon-stats-bot/issues/new> or contacting <@598315657595191316>` // Apparently adding <> around a link removes the embed
+      );
     } catch (error) {}
-    error.log.error(`${error}\n${error.stack}`);
+    log.error(error.stack);
   }
   log.info(`Done running ${message.content} in ${message.guild.name} #${message.channel.name}`);
 }
